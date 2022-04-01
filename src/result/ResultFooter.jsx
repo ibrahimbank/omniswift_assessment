@@ -1,6 +1,16 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
-function ResultFooter({ gpatd, gpats, gptd, gpts, remarks, untd, unts }) {
+function ResultFooter() {
+  const [value, setValue] = useState([]);
+  const { id } = useParams();
+  const RESULT_URL = `https://testapiomniswift.herokuapp.com/api/viewResult/${id}`;
+
+  useEffect(() => {
+    axios.post(RESULT_URL).then((res) => setValue(res.data.data.cummulative));
+  }, [RESULT_URL]);
+
   return (
     <div className="result__footer">
       <table className="footer__table">
@@ -16,18 +26,18 @@ function ResultFooter({ gpatd, gpats, gptd, gpts, remarks, untd, unts }) {
         </thead>
         <tbody>
           <tr className="footer__table__row row_list">
-            <td> {gpatd}</td>
-            <td>{gpats}</td>
-            <td>{gptd}</td>
-            <td>{gpts}</td>
-            <td>{untd}</td>
-            <td>{unts}</td>
+            <td> {value.gpatd}</td>
+            <td>{value.gpats}</td>
+            <td>{value.gptd}</td>
+            <td>{value.gpts}</td>
+            <td>{value.untd}</td>
+            <td>{value.unts}</td>
           </tr>
         </tbody>
       </table>
 
       <h5 className="remarks">
-        Remarks: <span>{remarks}</span>
+        Remarks: <span>{value.remarks}</span>
       </h5>
 
       <div className="signature">
