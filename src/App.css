@@ -109,6 +109,7 @@ body {
   border: none;
   color: #ffffff;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 /* table css */
@@ -212,15 +213,21 @@ body {
   letter-spacing: 0.75px;
   color: #ffffff;
   background: #46c35f;
+  cursor: pointer;
   border: none;
 }
 
 /* Result css */
 
+.result__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .result {
   display: flex;
   flex-direction: column;
-
   width: 595px;
   height: auto;
   background: #ffffff;

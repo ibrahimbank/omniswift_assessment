@@ -1,6 +1,4 @@
-import React from "react";
-
-function ResultList() {
+function ResultList({ result }) {
   return (
     <div className="result__list">
       <table className="table result__table__table">
@@ -15,46 +13,16 @@ function ResultList() {
           </tr>
         </thead>
         <tbody>
-          <tr className="table__row result_td">
-            <td> 1</td>
-            <td>PDE 701</td>
-            <td>History of Education</td>
-            <td>2</td>
-            <td>A</td>
-            <td>8</td>
-          </tr>
-          <tr className="table__row result_td">
-            <td> 2</td>
-            <td className="full">PDE 701</td>
-            <td className="wide">History of Education</td>
-            <td>2</td>
-            <td>A</td>
-            <td>8</td>
-          </tr>
-          <tr className="table__row result_td">
-            <td> 3</td>
-            <td>PDE 701</td>
-            <td>History of Education</td>
-            <td>2</td>
-            <td>A</td>
-            <td>8</td>
-          </tr>
-          <tr className="table__row result_td">
-            <td> 4</td>
-            <td>PDE 701</td>
-            <td>History of Education</td>
-            <td>2</td>
-            <td>A</td>
-            <td>8</td>
-          </tr>
-          <tr className="table__row result_td">
-            <td> 5</td>
-            <td>PDE 701</td>
-            <td>History of Education</td>
-            <td>2</td>
-            <td>A</td>
-            <td>8</td>
-          </tr>
+          {result.map((res, key) => (
+            <tr className="table__row result_td" key={key}>
+              <td>{key + 1}</td>
+              <td>{res.coursecode}</td>
+              <td>{res.title}</td>
+              <td>{res.credit_unit}</td>
+              <td>{res.grade}</td>
+              <td>{res.total_point}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

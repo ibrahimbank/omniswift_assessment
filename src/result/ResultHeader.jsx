@@ -1,8 +1,7 @@
 import React from "react";
 import Logo from "../img/logo.png";
-import Passport from "../img/Passport.png";
 
-function ResultHeader() {
+function ResultHeader({ avater, surname, firstName, regNo, level, session }) {
   return (
     <div className="result__header">
       <div className="top">
@@ -16,21 +15,38 @@ function ResultHeader() {
           <h5>Student First Semester Statement Of Result</h5>
         </div>
 
-        <img src={Passport} alt="avater" className="avater" />
+        <img src={avater} alt="avater" className="avater" />
       </div>
 
       <div className="personal__details">
         <h5>
-          Name: <span>Chukwuma James Nnamdi</span>
+          Name:
+          <span>
+            {surname}
+            {firstName}
+            {/* {surname
+              .split(" ")
+              .map(
+                (word) => word[0].toUpperCase() + word.slice(1).toLowerCase()
+              )
+              .join(" ")}
+              
+            {firstName
+              .split(" ")
+              .map(
+                (word) => word[0].toUpperCase() + word.slice(1).toLowerCase()
+              )
+              .join(" ")} */}
+          </span>
         </h5>
         <h5 className="reg">
-          Reg. No.: <span>FCE/PGDE/2021/002</span>
+          Reg. No.: <span>{regNo}</span>
         </h5>
         <h5>
-          Level: <span>100 level</span>
+          Level: <span>{level}</span>
         </h5>
         <h5 className="reg">
-          Session: <span>2022/2023 Session</span>
+          Session: <span>{session}</span>
         </h5>
       </div>
     </div>

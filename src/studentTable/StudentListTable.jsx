@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function StudentListTable({ option }) {
   const [data, setData] = useState([]);
@@ -11,6 +12,8 @@ function StudentListTable({ option }) {
       setData(res.data.data.students);
     });
   }, []);
+
+  const navigate = useNavigate();
 
   const search = option
     ? data.filter((data) => {
@@ -82,7 +85,9 @@ function StudentListTable({ option }) {
                       .join(" ")}
                   </td>
                   <td>
-                    <button>Download Result</button>
+                    <button onClick={() => navigate(`/result/${res.id}`)}>
+                      Download Result
+                    </button>
                   </td>
                 </tr>
               ))
@@ -128,7 +133,9 @@ function StudentListTable({ option }) {
                       .join(" ")}
                   </td>
                   <td>
-                    <button>Download Result</button>
+                    <button onClick={() => navigate(`/result/${res.id}`)}>
+                      Download Result
+                    </button>
                   </td>
                 </tr>
               ))}

@@ -1,6 +1,6 @@
 import React from "react";
 
-function ResultFooter() {
+function ResultFooter({ gpatd, gpats, gptd, gpts, remarks, untd, unts }) {
   return (
     <div className="result__footer">
       <table className="footer__table">
@@ -16,18 +16,18 @@ function ResultFooter() {
         </thead>
         <tbody>
           <tr className="footer__table__row row_list">
-            <td> 028</td>
-            <td>028</td>
-            <td>067</td>
-            <td>067</td>
-            <td>2.71</td>
-            <td>2.71</td>
+            <td> {gpatd}</td>
+            <td>{gpats}</td>
+            <td>{gptd}</td>
+            <td>{gpts}</td>
+            <td>{untd}</td>
+            <td>{unts}</td>
           </tr>
         </tbody>
       </table>
 
       <h5 className="remarks">
-        Remarks: <span>Pass</span>
+        Remarks: <span>{remarks}</span>
       </h5>
 
       <div className="signature">
