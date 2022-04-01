@@ -214,7 +214,7 @@ body {
   color: #343434;
 }
 
-.table__row button {
+.btn__btn {
   display: flex;
   align-items: center;
   justify-content: center;
