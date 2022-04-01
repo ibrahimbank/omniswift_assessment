@@ -124,8 +124,26 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 513px;
+  overflow-x: hidden;
   padding: 42px 28px;
+}
+
+.table::-webkit-scrollbar {
+  width: 24px;
+  background: #f8f8f8;
+}
+
+.table::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+  margin: 42px;
+}
+
+.table::-webkit-scrollbar-thumb {
+  width: 10px;
+  background: #46c35f;
+  border-radius: 100px;
 }
 
 .table thead {

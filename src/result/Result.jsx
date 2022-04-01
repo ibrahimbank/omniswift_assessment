@@ -17,41 +17,26 @@ function Result() {
     axios.post(RESULT_URL).then((res) => setValue(res.data));
   }, [RESULT_URL]);
 
-  const name = value.data.surname;
-  const avater = value.profile_picture;
-  const firstname = value.data.firstname;
-  const reg_no = value.data.reg_no;
-  const level = value.data.level;
-  const session = value.data.session;
-
-  const result = value.data.result;
-
   return (
     <div className="result__container">
       <div className="result">
         <ResultHeader
-          // avater={value.profile_picture}
-          // surname={value.data.surname}
-          // firstName={value.data.firstname}
-          // regNo={value.data.reg_no}
-          // level={value.data.level}
-          // session={value.data.session}
-          avater={avater}
-          surname={name}
-          firstName={firstname}
-          regNo={reg_no}
-          level={level}
-          session={session}
+          avater={value.profile_picture}
+          surname={value.data.surname}
+          firstName={value.data.firstname}
+          regNo={value.data.reg_no}
+          level={value.data.level}
+          session={value.data.session}
         />
-        <ResultList result={result} />
+        <ResultList result={value.data.result} />
         <ResultFooter
-        // gpatd={value.data.cummulative.gpatd}
-        // gpats={value.data.cummulative.gpats}
-        // gptd={value.data.cummulative.gptd}
-        // gpts={value.data.cummulative.gpts}
-        // remarks={value.data.cummulative.remarks}
-        // untd={value.data.cummulative.untd}
-        // unts={value.data.cummulative.unts}
+          gpatd={value.data.cummulative.gpatd}
+          gpats={value.data.cummulative.gpats}
+          gptd={value.data.cummulative.gptd}
+          gpts={value.data.cummulative.gpts}
+          remarks={value.data.cummulative.remarks}
+          untd={value.data.cummulative.untd}
+          unts={value.data.cummulative.unts}
         />
       </div>
     </div>
