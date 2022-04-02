@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { createRef } from "react";
 
-function StudentListTable({ option }) {
+function StudentListTable({ option, print }) {
   const [data, setData] = useState([]);
 
   const ALL_DATA_URL = "https://testapiomniswift.herokuapp.com/api/viewAllData";
@@ -13,7 +14,9 @@ function StudentListTable({ option }) {
     });
   }, []);
 
-  const navigate = useNavigate();
+  const ref = createRef();
+
+  // const navigate = useNavigate();
 
   const search = option
     ? data.filter((data) => {
@@ -86,9 +89,10 @@ function StudentListTable({ option }) {
                   </td>
                   <td>
                     <button
-                      onClick={() => navigate(`/result/${res.id}`)}
+                      // to={`/result/${res.id}`}
                       target="_blank"
                       className="btn__btn"
+                      onClick={print}
                     >
                       Download Result
                     </button>
@@ -137,13 +141,14 @@ function StudentListTable({ option }) {
                       .join(" ")}
                   </td>
                   <td>
-                    <button
-                      onClick={() => navigate(`/result/${res.id}`)}
+                    <Link
+                      to={`/result/${res.id}`}
                       target="_blank"
                       className="btn__btn"
+                      onClick={print}
                     >
                       Download Result
-                    </button>
+                    </Link>
                   </td>
                 </tr>
               ))}

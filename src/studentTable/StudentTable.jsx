@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import StudentListTable from "./StudentListTable";
 import axios from "axios";
-function StudentTable() {
+function StudentTable({ print }) {
   const [age, setAge] = useState([]);
   const [state, setState] = useState([]);
   const [level, setLevel] = useState([]);
@@ -98,7 +98,7 @@ function StudentTable() {
         </div>
       </form>
 
-      <StudentListTable option={option} />
+      <StudentListTable option={option} print={print} />
     </div>
   );
 }

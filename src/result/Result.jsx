@@ -4,6 +4,7 @@ import axios from "axios";
 import ResultFooter from "./ResultFooter";
 import ResultHeader from "./ResultHeader";
 import ResultList from "./ResultList";
+import { createRef } from "react";
 
 function Result() {
   const [value, setValue] = useState([]);
@@ -19,8 +20,10 @@ function Result() {
     axios.post(RESULT_URL).then((res) => setAvater(res.data));
   }, [RESULT_URL]);
 
+  const ref = createRef();
+
   return (
-    <div className="result__container">
+    <div className="result__container" id="resultt">
       <div className="result">
         <ResultHeader
           avater={avater.profile_picture}
