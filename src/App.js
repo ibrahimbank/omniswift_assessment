@@ -7,11 +7,17 @@ import { renderToString } from "react-dom/server";
 
 function App() {
   const print = () => {
-    const string = renderToString(Result);
+    const string = renderToString(<Result />);
     const pdf = new jsPDF("p", "mm", "a4");
 
-    pdf.html(string);
-    pdf.save("pdf");
+    pdf.html(string, {
+      callback: function (pdf) {
+        pdf.save();
+      },
+      x: 10,
+      y: 10,
+    });
+    // pdf.save("pdf");
   };
   return (
     <>
