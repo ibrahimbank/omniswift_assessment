@@ -86,7 +86,9 @@ function StudentListTable({ option }) {
                   </td>
                   <td>
                     <button
-                      onClick={() => navigate(`/result/${res.id}`)}
+                      onClick={() => {
+                        navigate(`/result/${res.id}`);
+                      }}
                       target="_blank"
                       className="btn__btn"
                     >

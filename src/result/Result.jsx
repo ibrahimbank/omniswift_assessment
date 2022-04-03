@@ -19,6 +19,14 @@ function Result() {
     axios.post(RESULT_URL).then((res) => setAvater(res.data));
   }, [RESULT_URL]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      window.print();
+    }, 3000);
+
+    // clearTimeout(timer);
+  }, []);
+
   return (
     <div className="result__container">
       <div className="result">
