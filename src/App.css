@@ -364,7 +364,7 @@ body {
   width: 100%;
   padding: 0 15px;
   margin-top: 40px;
-  margin-bottom: 33px;
+  margin-bottom: 10px;
 }
 
 .result_table {
@@ -413,7 +413,7 @@ body {
   flex-direction: column;
   width: 100%;
   height: 100%;
-  margin-bottom: 17px;
+  margin-bottom: 7px;
 }
 
 .footer__table thead {
@@ -538,8 +538,8 @@ body {
   .result__table__table {
     width: 100%;
     /* padding: 0 15px;
-    margin-top: 40px;
-    margin-bottom: 33px; */
+    margin-top: 40px; */
+    margin-bottom: 33px;
   }
 
   /* .result__table__table,
