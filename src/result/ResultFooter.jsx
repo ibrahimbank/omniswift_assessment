@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+// import { useDispatch, useSelector } from "react-redux";
+// import { resultGrade } from "../slice/ResultSlice";
+// import { reset } from "../slice/StudentSlice";
 
 function ResultFooter() {
   const [value, setValue] = useState([]);
@@ -10,6 +13,17 @@ function ResultFooter() {
   useEffect(() => {
     axios.post(RESULT_URL).then((res) => setValue(res.data.data.cummulative));
   }, [RESULT_URL]);
+
+  // const dispatch = useDispatch();
+
+  // const { grade, isSuccess } = useSelector((state) => state.students);
+
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     dispatch(reset());
+  //   }
+  //   dispatch(resultGrade(id));
+  // }, [dispatch, reset, resultGrade]);
 
   return (
     <div className="result__footer">

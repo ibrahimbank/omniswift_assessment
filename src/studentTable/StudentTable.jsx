@@ -1,21 +1,28 @@
 import { useState, useEffect } from "react";
 import StudentListTable from "./StudentListTable";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  ageCategories,
+  stateCategories,
+  levelCategories,
+  reset,
+} from "../slice/StudentSlice";
 function StudentTable() {
-  const [age, setAge] = useState([]);
-  const [state, setState] = useState([]);
-  const [level, setLevel] = useState([]);
   const [option, setOption] = useState("");
 
-  const AGE__URL = "https://testapiomniswift.herokuapp.com/api/viewAllAges";
-  const STATE__URL = "https://testapiomniswift.herokuapp.com/api/viewAllStates";
-  const LEVEL__URL = "https://testapiomniswift.herokuapp.com/api/viewAllLevels";
+  const dispatch = useDispatch();
+
+  const { age, state, level, isLoading, isSuccess, isError, message } =
+    useSelector((state) => state.students);
 
   useEffect(() => {
-    axios.get(AGE__URL).then((res) => setAge(res.data.data));
-    axios.get(STATE__URL).then((res) => setState(res.data.data));
-    axios.get(LEVEL__URL).then((res) => setLevel(res.data.data));
-  }, []);
+    if (isSuccess) {
+      dispatch(reset());
+    }
+    dispatch(ageCategories());
+    dispatch(stateCategories());
+    dispatch(levelCategories());
+  }, [dispatch, stateCategories, levelCategories, ageCategories, isSuccess]);
 
   const handleClick = (e) => {
     e.preventDefault();

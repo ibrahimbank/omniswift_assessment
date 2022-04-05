@@ -1,14 +1,39 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+// import axios from "axios";
+import { reset, result } from "../slice/ResultSlice";
 function ResultList() {
-  const [value, setValue] = useState([]);
+  // const [value, setValue] = useState([]);
   const { id } = useParams();
-  const RESULT_URL = `https://testapiomniswift.herokuapp.com/api/viewResult/${id}`;
+  // const RESULT_URL = `https://testapiomniswift.herokuapp.com/api/viewResult/${id}`;
+
+  const { results, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.results
+  );
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axios.post(RESULT_URL).then((res) => setValue(res.data.data.result));
-  }, [RESULT_URL]);
+    // axios.post(RESULT_URL).then((res) => setValue(res.data.data.result));
+
+    if (isError) {
+      console.log(message);
+    }
+
+    if (isSuccess) {
+      // dispatch(reset());
+    }
+  }, [dispatch, isSuccess, id, message, isError]);
+
+  useEffect(() => {
+    dispatch(result(id));
+  }, [dispatch, id]);
+
+  if (isLoading) {
+    <h2>Loading....</h2>;
+  }
+
+  console.log(results);
 
   return (
     <div className="result__list">
@@ -24,7 +49,7 @@ function ResultList() {
           </tr>
         </thead>
         <tbody>
-          {value.map((res, key) => (
+          {results.map((res, key) => (
             <tr className="table__row result_td" key={key}>
               <td>{key + 1}</td>
               <td>{res.coursecode}</td>

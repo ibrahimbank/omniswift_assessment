@@ -1,22 +1,26 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { reset, studentsList } from "../slice/StudentSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function StudentListTable({ option }) {
-  const [data, setData] = useState([]);
+  const dispatch = useDispatch();
 
-  const ALL_DATA_URL = "https://testapiomniswift.herokuapp.com/api/viewAllData";
+  const { students, student, isLoading, isSuccess, isError, message } =
+    useSelector((state) => state.students);
 
   useEffect(() => {
-    axios.get(ALL_DATA_URL).then((res) => {
-      setData(res.data.data.students);
-    });
-  }, []);
+    if (isSuccess) {
+      dispatch(reset());
+    }
+    dispatch(studentsList());
+  }, [dispatch, studentsList]);
 
   const navigate = useNavigate();
 
   const search = option
-    ? data.filter((data) => {
+    ? students.filter((data) => {
         return (
           data.age === +option ||
           data.state.toLowerCase().includes(option.toLowerCase()) ||
@@ -24,7 +28,7 @@ function StudentListTable({ option }) {
           data.gender.toLowerCase() === option.toLowerCase()
         );
       })
-    : data;
+    : students;
 
   return (
     <div className="table__container">
@@ -43,7 +47,7 @@ function StudentListTable({ option }) {
         </thead>
         <tbody>
           {!option
-            ? data.map((res) => (
+            ? students.map((res) => (
                 <tr className="table__row" key={res.id}>
                   <td>{res.id}</td>
                   <td>
